@@ -1,22 +1,10 @@
-# Tinygamer
+After having installed TinyGo thanks to the [official documentation](https://tinygo.org/getting-started/install/) you may wonder what to do next.
 
-Tout ce que je peux partager à propos de tinygo avec la Pygamer de Adafruit.
+First, you have to toy with the Hello World of electronics, the [Blink tutorial](https://tinygo.org/docs/tutorials/blinky/). 
 
-Commencez par suivre les indications de https://tinygo.org pour installer tinygo.<br/>
-Installez ensuite les drivers avec la commande :<br/>
-`go get tinygo.org/x/drivers`
+Then, you can have a look at the documentation of the [target](https://tinygo.org/docs/reference/microcontrollers/) you want to use.
 
-Placez vous dans un répertoire et utilisez la commande :<br/>
-`tinygo flash -target=pygamer`
+From there, we will try to show simple examples, on several platforms.<br/>
+Each folder is dedicated to one platform.
 
-
-english version ----
-
-Everything I can share about tinygo with the Pygamer from Adafruit.
-
-First, follow instructions from https://tinygo.org to install tinygo.<br/>
-Next, install drivers with the command:<br/>
-`go get tinygo.org/x/drivers`
-
-Go in a folder and use the command:<br/>
-`tinygo flash -target=pygamer`
+Do not hesitate to propose new examples on exiisting or new platform!
