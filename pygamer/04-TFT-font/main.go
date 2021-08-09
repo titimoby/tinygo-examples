@@ -27,15 +27,15 @@ func main() {
 
 	for {
 		display.FillScreen(black)
-		tinyfont.WriteLine(&display, &freesans.Regular9pt7b, 10, 10, "No rotation", red)
+		tinyfont.WriteLine(&display, &freesans.Regular9pt7b, 10, 20, "No rotation", red)
 		time.Sleep(1 * time.Second)
 
 		display.FillScreen(black)
-		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 10, 10, "COUCOU", red, tinyfont.ROTATION_90)
+		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 10, 10, "HELLO", red, tinyfont.ROTATION_90)
 		time.Sleep(1 * time.Second)
 
 		display.FillScreen(black)
-		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 100, 50, "Coucou", green, tinyfont.ROTATION_90)
+		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 100, 50, "Hello", green, tinyfont.ROTATION_90)
 		time.Sleep(1 * time.Second)
 	}
 }
