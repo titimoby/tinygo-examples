@@ -7,4 +7,4 @@ Then, you can have a look at the documentation of the [target](https://tinygo.or
 From there, we will try to show simple examples, on several platforms.<br/>
 Each folder is dedicated to one platform.
 
-Do not hesitate to propose new examples on exiisting or new platform!
+Do not hesitate to propose new examples on existing or new platform!
