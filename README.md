@@ -1,3 +1,7 @@
+# TinyGo examples
+
+<img src="tinygo-examples.png" width="300"/>
+
 After having installed TinyGo thanks to the [official documentation](https://tinygo.org/getting-started/install/) you may wonder what to do next.
 
 First, you have to toy with the Hello World of electronics, the [Blink tutorial](https://tinygo.org/docs/tutorials/blinky/). 
