@@ -29,10 +29,6 @@ func main() {
 	// Register display status
 	regDISPSTAT.SetBits(1<<3 | 1<<4)
 
-	white = color.RGBA{255, 255, 255, 255}
-	green = color.RGBA{0, 255, 0, 255}
-	red = color.RGBA{255, 0, 0, 255}
-
 	// Draw a red line
 	tinydraw.Line(&display, 100, 100, 40, 100, red)
 
