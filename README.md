@@ -14,6 +14,6 @@ Each folder is dedicated to one platform.
 Do not hesitate to propose new examples on existing or new platform!
 
 Platform list:
-- ![Nintendo Gameboy Advance](gba/)
-- ![Adafruit Pygamer](pygamer/)
-- ![Adafruit Pyportal Titano](titano/)
+- [Nintendo Gameboy Advance](gba/)
+- [Adafruit Pygamer](pygamer/)
+- [Adafruit Pyportal Titano](titano/)
