@@ -12,3 +12,8 @@ From there, we will try to show simple examples, on several platforms.<br/>
 Each folder is dedicated to one platform.
 
 Do not hesitate to propose new examples on existing or new platform!
+
+Platform list:
+- ![Nintendo Gameboy Advance](gba/)
+- ![Adafruit Pygamer](pygamer/)
+- ![Adafruit Pyportal Titano](titano/)
