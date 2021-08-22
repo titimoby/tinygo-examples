@@ -23,7 +23,7 @@ func main() {
 		SDO:       machine.SPI1_SDO_PIN,
 		SDI:       machine.SPI1_SDI_PIN,
 	})
-	display.Configure(st7735.Config{})
+	display.Configure(st7735.Config{Rotation: st7735.ROTATION_90})
 
 	for {
 		display.FillScreen(black)
@@ -31,11 +31,15 @@ func main() {
 		time.Sleep(1 * time.Second)
 
 		display.FillScreen(black)
-		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 10, 10, "HELLO", red, tinyfont.ROTATION_90)
+		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 10, 10, "HELLO", green, tinyfont.ROTATION_90)
 		time.Sleep(1 * time.Second)
 
 		display.FillScreen(black)
-		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 100, 50, "Hello", green, tinyfont.ROTATION_90)
+		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 100, 50, "Hello", red, tinyfont.ROTATION_180)
+		time.Sleep(1 * time.Second)
+
+		display.FillScreen(black)
+		tinyfont.WriteLineRotated(&display, &freemono.Bold9pt7b, 120, 100, "HELLO", green, tinyfont.ROTATION_270)
 		time.Sleep(1 * time.Second)
 	}
 }
