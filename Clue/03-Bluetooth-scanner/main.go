@@ -1,3 +1,5 @@
+// from https://github.com/tinygo-org/bluetooth/blob/release/examples/clue-scanner/main.go
+// https://github.com/tinygo-org/bluetooth/blob/release/LICENSE
 package main
 
 import (
