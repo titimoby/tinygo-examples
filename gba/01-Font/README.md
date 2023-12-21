@@ -31,13 +31,9 @@ tinygo:ld.lld: warning: lld uses blx instruction, no object with architecture su
 
 ## Build the app
 
-* For mGBA:
+* For mGBA, VisualBoyAdvance emulator or real GBA console:
 
-`$ GOFLAGS=-mod=mod tinygo build -size short -o font.gba -target=gameboy-advance main.go`
-
-* For VisualBoyAdvance emulator or real GBA console:
-
-`$ tinygo build -size short -o font.gba -target=gameboy-advance main.go`
+`$ GOFLAGS=-mod=mod tinygo build -o font.gba -target=gameboy-advance main.go`
 
 ## Test the app/game
 
