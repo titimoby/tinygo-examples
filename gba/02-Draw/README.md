@@ -48,17 +48,3 @@ tinygo:ld.lld: warning: lld uses blx instruction, no object with architecture su
 Let's run our app on mGBA emulator:
 
 `$ mgba draw.gba`
-
-### mGBA Controls
-
-Controls are configurable in the **settings** menu of **mGBA**. Many game controllers should be automatically mapped by default. 
-The default keyboard controls are as follows:
-
-```
-A: X
-B: Z
-L: A
-R: S
-Start: Enter
-Select: Backspace
-```
