@@ -4,8 +4,8 @@ This repo contains a simple game (yes, very very very simple game) for Game Boy 
 
 We use:
 * [TinyGo](https://tinygo.org/)
+* [TinyGBA](https://github.com/tinygo-org/tinygba)
 * [TinyFont](https://github.com/tinygo-org/tinyfont)
-* [TinyDraw](https://github.com/tinygo-org/tinydraw)
 
 Please read the [Learning Go by examples: part 5 - Create a Game Boy Advance (GBA) game in Go ](https://dev.to/aurelievache/learning-go-by-examples-part-5-create-a-game-boy-advance-gba-game-in-go-5944) article in order to know more about this app.
 

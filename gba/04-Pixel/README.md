@@ -4,7 +4,6 @@ This repo contains an example for TinyGo Game Boy Advance.
 
 We use:
 * [TinyGo](https://tinygo.org/)
-* [Tinyheart](https://github.com/tinygo-org/tinyheart)
 
 ## General
 
@@ -31,13 +30,9 @@ tinygo:ld.lld: warning: lld uses blx instruction, no object with architecture su
 
 ## Build the app
 
-* For mGBA:
+* For mGBA, VisualBoyAdvance emulator or real GBA console:
 
-`$ GOFLAGS=-mod=mod tinygo build -size short -o bin/heart.elf -target=gameboy-advance main.go ; mv bin/heart.elf bin/heart.gba`
-
-* For VisualBoyAdvance emulator or real GBA console:
-
-`$ tinygo build -size short -o bin/heart.gba -target=gameboy-advance main.go`
+`$ GOFLAGS=-mod=mod tinygo build -o heart.gba -target=gameboy-advance main.go`
 
 ## Result
 
@@ -45,24 +40,10 @@ tinygo:ld.lld: warning: lld uses blx instruction, no object with architecture su
 
 ## Build the app
 
-`$ tinygo build -size short -o bin/heart.gba -target=gameboy-advance main.go`
+`$ tinygo build -o heart.gba -target=gameboy-advance main.go`
 
 ## Test the app/game
 
 Let's run our app on mGBA emulator:
 
-`$ mgba bin/heart.gba`
-
-### mGBA Controls
-
-Controls are configurable in the **settings** menu of **mGBA**. Many game controllers should be automatically mapped by default. 
-The default keyboard controls are as follows:
-
-```
-A: X
-B: Z
-L: A
-R: S
-Start: Enter
-Select: Backspace
-```
+`$ mgba heart.gba`

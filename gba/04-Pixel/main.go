@@ -3,21 +3,14 @@ package main
 import (
 	"image/color"
 	"machine"
-	"runtime/volatile"
-	"unsafe"
 )
 
 var (
-	// Register display
-	regDISPSTAT = (*volatile.Register16)(unsafe.Pointer(uintptr(0x4000004)))
-
 	// Display from machine
 	display = machine.Display
 
 	// Colors
 	white = color.RGBA{255, 255, 255, 255}
-	// green = color.RGBA{0, 255, 0, 255}
-	// red   = color.RGBA{255, 0, 0, 255}
 
 	x int16 = 100
 	y int16 = 50
@@ -26,9 +19,6 @@ var (
 func main() {
 	// Set up the display
 	display.Configure()
-
-	// Register display status
-	regDISPSTAT.SetBits(1<<3 | 1<<4)
 
 	//1
 	for i := 0; i < 2; i++ {

@@ -3,16 +3,11 @@ package main
 import (
 	"image/color"
 	"machine"
-	"runtime/volatile"
-	"unsafe"
 
 	"tinygo.org/x/tinydraw"
 )
 
 var (
-	// Register display
-	regDISPSTAT = (*volatile.Register16)(unsafe.Pointer(uintptr(0x4000004)))
-
 	// Display from machine
 	display = machine.Display
 
@@ -25,9 +20,6 @@ var (
 func main() {
 	// Set up the display
 	display.Configure()
-
-	// Register display status
-	regDISPSTAT.SetBits(1<<3 | 1<<4)
 
 	// Draw a red line
 	tinydraw.Line(&display, 100, 100, 40, 100, red)
