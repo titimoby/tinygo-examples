@@ -40,19 +40,15 @@ tinygo:ld.lld: warning: lld uses blx instruction, no object with architecture su
 
 ## Build the app
 
-* For mGBA:
+* For mGBA, VisualBoyAdvance emulator or real GBA console:
 
-`$ GOFLAGS=-mod=mod tinygo build -size short -o bin/gopher.elf -target=gameboy-advance main.go ; mv bin/gopher.elf bin/gopher.gba`
-
-* For VisualBoyAdvance emulator or real GBA console:
-
-`$ tinygo build -size short -o bin/gopher.gba -target=gameboy-advance main.go`
+`$ GOFLAGS=-mod=mod tinygo build -o gopher.gba -target=gameboy-advance main.go`
 
 ## Test the app/game
 
 Let's run our app on mGBA emulator:
 
-`$ mgba bin/gopher.gba`
+`$ mgba gopher.gba`
 
 ### mGBA Controls
 

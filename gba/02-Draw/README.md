@@ -31,13 +31,9 @@ tinygo:ld.lld: warning: lld uses blx instruction, no object with architecture su
 
 ## Build the app
 
-* For mGBA:
+* For mGBA, VisualBoyAdvance emulator or real GBA console:
 
-`$ GOFLAGS=-mod=mod tinygo build -size short -o bin/draw.elf -target=gameboy-advance main.go ; mv bin/draw.elf bin/draw.gba`
-
-* For VisualBoyAdvance emulator or real GBA console:
-
-`$ tinygo build -size short -o bin/draw.gba -target=gameboy-advance main.go`
+`$ GOFLAGS=-mod=mod tinygo build -o draw.gba -target=gameboy-advance main.go`
 
 ## Result
 
@@ -45,13 +41,13 @@ tinygo:ld.lld: warning: lld uses blx instruction, no object with architecture su
 
 ## Build the app
 
-`$ tinygo build -size short -o bin/draw.gba -target=gameboy-advance main.go`
+`$ tinygo build -o draw.gba -target=gameboy-advance main.go`
 
 ## Test the app/game
 
 Let's run our app on mGBA emulator:
 
-`$ mgba bin/draw.gba`
+`$ mgba draw.gba`
 
 ### mGBA Controls
 
