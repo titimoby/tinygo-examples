@@ -35,6 +35,8 @@ var (
 	y int16 = 100 //TODO: vertically center
 
 	border int16 = 40
+
+	gameStarted = false
 )
 
 func main() {
@@ -69,68 +71,85 @@ func drawGophers() {
 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
 }
 
+//TODO use gameStarted
+
 func update() {
 	key := tinygba.ReadButtons()
 
 	switch {
 	case tinygba.ButtonStart.IsPushed(key):
+		gameStarted = true
+
 		clearScreen()
 
 		// Display gopher
 		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 	case tinygba.ButtonSelect.IsPushed(key):
+		gameStarted = false
+
 		clearScreen()
 		drawGophers()
 
 	case tinygba.ButtonRight.IsPushed(key):
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-		if x <= screenWidth-border*2 {
-			x = x + 10
+		if gameStarted {
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
+
+			if x <= screenWidth-border*2 {
+				x = x + 10
+			}
+
+			// display gopher at right
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 		}
-
-		// display gopher at right
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 
 	case tinygba.ButtonLeft.IsPushed(key):
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
+		if gameStarted {
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-		if x >= border {
-			x = x - 10
+			if x >= border {
+				x = x - 10
+			}
+
+			// display gopher at right
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 		}
-
-		// display gopher at right
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 
 	case tinygba.ButtonDown.IsPushed(key):
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
+		if gameStarted {
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-		if y <= screenHeight-border {
-			y = y + 10
+			if y <= screenHeight-border {
+				y = y + 10
+			}
+
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 		}
-
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 
 	case tinygba.ButtonUp.IsPushed(key):
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
+		if gameStarted {
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-		if y >= border*2 {
-			y = y - 10
+			if y >= border*2 {
+				y = y - 10
+			}
+
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 		}
 
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
-
 	case tinygba.ButtonA.IsPushed(key):
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
+		if gameStarted {
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-		// Display the gopher up
-		y = y - 20
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
+			// Display the gopher up
+			y = y - 20
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
-		// Display the gopher down
-		y = y + 20
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
+			// Display the gopher down
+			y = y + 20
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
+		}
 	}
 }
 
