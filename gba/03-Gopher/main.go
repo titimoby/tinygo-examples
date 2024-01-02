@@ -104,7 +104,9 @@ func update() {
 		clearScreen()
 
 		// Display Gopher at the "center" of the screen
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, 100, 100, 'B', green)
+		x = 100
+		y = 100
+		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 	case tinygba.ButtonSelect.IsPushed(key):
 		gameStarted = false
 
