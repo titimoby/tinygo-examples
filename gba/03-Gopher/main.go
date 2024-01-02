@@ -92,8 +92,6 @@ func drawGophers() {
 	// }
 }
 
-//TODO: use gameStarted
-
 func update() {
 	key := tinygba.ReadButtons()
 
