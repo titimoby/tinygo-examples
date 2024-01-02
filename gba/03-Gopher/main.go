@@ -31,18 +31,14 @@ var (
 	gGreen  = color.RGBA{15, 157, 88, 255}
 
 	// Coordinates
-	// x int16 = 100 //TODO: horizontally center
-	// y int16 = 100 //TODO: vertically center
-	x int16 = screenWidth / 2
-	y int16 = screenHeight / 2
+	x int16 = 100 //TODO: horizontally center
+	y int16 = 100 //TODO: vertically center
+	// x int16 = screenWidth / 2
+	// y int16 = screenHeight / 2
 
-	// Borders TODO: optimize left and right borders
-	border int16 = 16
-	// leftBorder  int16 = 30
-	// rightBorder int16 = screenWidth - 45
-	// upBorder    int16 = 60
+	// Borders
+	border   int16 = 16
 	upBorder int16 = 25
-	// downBorder int16 = screenHeight - 20
 
 	// Game status
 	gameStarted = false
@@ -107,8 +103,8 @@ func update() {
 
 		clearScreen()
 
-		// Display gopher
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
+		// Display Gopher at the "center" of the screen
+		tinyfont.DrawChar(&display, &gophers.Regular58pt, 100, 100, 'B', green)
 	case tinygba.ButtonSelect.IsPushed(key):
 		gameStarted = false
 
@@ -170,14 +166,17 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			// Display the gopher up
-			y = y - 20
-			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
+			//TODO: a regler p-e avec le 20 du saut et non le 10 du deplacement normal
+			if y >= ((border * 2) + upBorder) {
+				// Display the gopher up
+				y = y - 20
+				tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
 
-			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
-			// Display the gopher down
-			y = y + 20
-			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
+				tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
+				// Display the gopher down
+				y = y + 20
+				tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', green)
+			}
 		}
 	}
 }
