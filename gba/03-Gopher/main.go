@@ -2,7 +2,6 @@ package main
 
 import (
 	"machine"
-	"time"
 
 	"image/color"
 
@@ -75,23 +74,23 @@ func drawGophers() {
 
 	// Display two gophers
 	//TODO: les faire bouger de gauche a droite
-	// tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
-	// tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
+	tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
+	tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
 
-	for {
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
+	// for {
+	// 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
+	// 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
 
-		time.Sleep(10 * time.Second)
+	// 	time.Sleep(10 * time.Second)
 
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, 10, 140, 'B', green)
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, 200, 140, 'X', red)
+	// 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 10, 140, 'B', green)
+	// 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 200, 140, 'X', red)
 
-		time.Sleep(10 * time.Second)
+	// 	time.Sleep(10 * time.Second)
 
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
-	}
+	// 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
+	// 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
+	// }
 }
 
 //TODO: use gameStarted
