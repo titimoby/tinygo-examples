@@ -2,6 +2,7 @@ package main
 
 import (
 	"machine"
+	"time"
 
 	"image/color"
 
@@ -31,20 +32,26 @@ var (
 	gGreen  = color.RGBA{15, 157, 88, 255}
 
 	// Coordinates
-	x int16 = 100 //TODO: horizontally center
-	y int16 = 100 //TODO: vertically center
+	// x int16 = 100 //TODO: horizontally center
+	// y int16 = 100 //TODO: vertically center
+	x int16 = screenWidth / 2
+	y int16 = screenHeight / 2
 
-	border int16 = 40
+	// Borders TODO: optimize left and right borders
+	border int16 = 16
+	// leftBorder  int16 = 30
+	// rightBorder int16 = screenWidth - 45
+	// upBorder    int16 = 60
+	upBorder int16 = 25
+	// downBorder int16 = screenHeight - 20
 
+	// Game status
 	gameStarted = false
 )
 
 func main() {
 	// Set up the display
 	display.Configure()
-
-	// Display Gopher text message and draw our Gophers
-	drawGophers()
 
 	// Infinite loop to avoid exiting the application
 	for {
@@ -67,13 +74,32 @@ func drawGophers() {
 	tinyfont.WriteLine(&display, &tinyfont.TomThumb, 85, 90, "Press START button", white)
 
 	// Display two gophers
-	tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
-	tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
+	//TODO: les faire bouger de gauche a droite
+	// tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
+	// tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
+
+	for {
+		tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
+		tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
+
+		time.Sleep(10 * time.Second)
+
+		tinyfont.DrawChar(&display, &gophers.Regular58pt, 10, 140, 'B', green)
+		tinyfont.DrawChar(&display, &gophers.Regular58pt, 200, 140, 'X', red)
+
+		time.Sleep(10 * time.Second)
+
+		tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
+		tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
+	}
 }
 
-//TODO use gameStarted
+//TODO: use gameStarted
 
 func update() {
+	// Display Gopher text message and draw our Gophers
+	drawGophers()
+
 	key := tinygba.ReadButtons()
 
 	switch {
@@ -95,7 +121,8 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			if x <= screenWidth-border*2 {
+			// if x <= rightBorder {
+			if x <= screenWidth-((border*2)+10) {
 				x = x + 10
 			}
 
@@ -107,6 +134,7 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
+			// if x >= leftBorder {
 			if x >= border {
 				x = x - 10
 			}
@@ -119,7 +147,8 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			if y <= screenHeight-border {
+			// if y <= downBorder {
+			if y <= screenHeight-(border) {
 				y = y + 10
 			}
 
@@ -130,7 +159,8 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			if y >= border*2 {
+			// if y >= upBorder {
+			if y >= ((border * 2) + upBorder) {
 				y = y - 10
 			}
 

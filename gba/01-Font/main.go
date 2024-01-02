@@ -34,6 +34,7 @@ func main() {
 }
 
 func drawText() {
+
 	tinyfont.DrawChar(&display, &freemono.Bold24pt7b, 46, 60, 'H', blue)
 	tinyfont.DrawChar(&display, &freemono.Bold24pt7b, 75, 60, 'e', white)
 	tinyfont.DrawChar(&display, &freemono.Bold24pt7b, 103, 60, 'l', red)
