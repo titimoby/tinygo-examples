@@ -52,6 +52,9 @@ func main() {
 	// Set up the display
 	display.Configure()
 
+	// Display Gopher text message and draw our Gophers
+	drawGophers()
+
 	// Infinite loop to avoid exiting the application
 	for {
 		tinygba.WaitForVBlank()
@@ -96,9 +99,6 @@ func drawGophers() {
 //TODO: use gameStarted
 
 func update() {
-	// Display Gopher text message and draw our Gophers
-	drawGophers()
-
 	key := tinygba.ReadButtons()
 
 	switch {
