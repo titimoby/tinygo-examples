@@ -15,7 +15,7 @@ Do not hesitate to propose new examples on existing or new platform!
 
 Platform list:
 - [Clue](Clue/)
-- [Nintendo Gameboy Advance](gba/)
+- [Nintendo Game Boy Advance](gba/)
 - [M5Stack Core 2](M5Core2/)
 - [micro:bit V2](microbitv2/)
 - [Adafruit Pygamer](pygamer/)
