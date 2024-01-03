@@ -8,3 +8,6 @@ Next, install drivers with the command:<br/>
 
 Go in a folder and use the command:<br/>
 `tinygo flash -target=pygamer`
+
+Note, as mentionned in the tinygo documentation:
+```Press the “RESET” button on the board two times to get the PyGamer board ready to receive code.```
