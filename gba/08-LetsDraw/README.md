@@ -11,13 +11,8 @@ We use:
 
 This simple app/game run on Game Boy Advance portable console and run a "Telecran" game.
 
-This simple app/game run on Game Boy Advance portable console and:
-* display a screen with "Gopher" text and "Press START button"
-* display two gophers
-* When you press START button: your Gopher player just appear
-* With multi directionnal arrows you can move your Gopher at left, right, top or bottom
-* When you press A button: your Gopher jump :-D 
-* When you press SELECT button, you go back to "Start" screen
+* With multi directionnal arrows you can draw at left, right, top or bottom
+* When you press START button, the draw area is cleaned
 
 ## Pre-requisites
 
