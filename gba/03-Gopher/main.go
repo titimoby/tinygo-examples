@@ -39,10 +39,10 @@ var (
 	// y int16 = screenHeight / 2
 
 	// Borders
-	border   int16 = 16
-	upBorder int16 = 25
+	border int16 = 16
 
-	gopherColor = green
+	gopherColor       = green
+	gopherSize  int16 = 30
 
 	// Game status
 	gameStarted = false
@@ -76,7 +76,6 @@ func drawGophers() {
 	tinyfont.WriteLine(&display, &tinyfont.TomThumb, 85, 90, "Press START button", white)
 
 	// Display two gophers
-	//TODO: les faire bouger de gauche a droite
 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 5, 140, 'B', green)
 	tinyfont.DrawChar(&display, &gophers.Regular58pt, 195, 140, 'X', red)
 }
@@ -106,8 +105,8 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			// if x <= rightBorder {
-			if x <= screenWidth-((border*2)+10) {
+			// if border right is reached, don't move to the right
+			if x+10+gopherSize < screenWidth-border {
 				x = x + 10
 			}
 
@@ -119,8 +118,8 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			// if x >= leftBorder {
-			if x >= border {
+			// if border left is reached, don't move to the left
+			if border < x-10 {
 				x = x - 10
 			}
 
@@ -132,8 +131,8 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			// if y <= downBorder {
-			if y <= screenHeight-(border) {
+			// if border down is reached, don't move to the bottom
+			if y+10 < screenHeight-border {
 				y = y + 10
 			}
 
@@ -144,8 +143,8 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			// if y >= upBorder {
-			if y >= ((border * 2) + upBorder) {
+			// if border up is reached, don't move to the top
+			if border < y-10-gopherSize {
 				y = y - 10
 			}
 
@@ -156,8 +155,8 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			//TODO: a regler p-e avec le 20 du saut et non le 10 du deplacement normal
-			if y >= ((border * 2) + upBorder) {
+			//TODO: little bug - gopher disapear ^^
+			if border < y-20-gopherSize {
 				// Display the gopher up
 				y = y - 20
 				tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
@@ -170,18 +169,14 @@ func update() {
 		}
 
 	case tinygba.ButtonB.IsPushed(key):
-		// tinyfont.DrawChar(&display, &gophers.Regular32pt, x, y, 'B', gopherColor)
-
 		gopherColor = green
 		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
 
 	case tinygba.ButtonL.IsPushed(key):
-
 		gopherColor = gYellow
 		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
 
 	case tinygba.ButtonR.IsPushed(key):
-
 		gopherColor = gBlue
 		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
 	}
