@@ -16,7 +16,10 @@ This simple app/game run on Game Boy Advance portable console and:
 * display two gophers
 * When you press START button: your Gopher player just appear
 * With multi directionnal arrows you can move your Gopher at left, right, top or bottom
-* When you press A button: your Gopher jump :-D 
+* When you press A button: your Gopher jump 
+* When you press B button: your Gopher is now green (again) 
+* When you press L button: your Gopher is now blue
+* When you press R button: your Gopher is now yellow
 * When you press SELECT button, you go back to "Start" screen
 
 ## Pre-requisites
