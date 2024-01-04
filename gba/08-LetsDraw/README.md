@@ -31,7 +31,6 @@ tinygo:ld.lld: warning: lld uses blx instruction, no object with architecture su
 
 ## Result
 
-TODO:
 ![App](doc/telecran.png)
 
 ## Build the app

@@ -53,8 +53,6 @@ func initScreen() {
 
 	tinyfont.DrawChar(&display, &gophers.Regular18pt, screenWidth-13, 80, 'B', white)
 
-	// tinyfont.DrawChar(&display, &gophers.Regular18pt, (screenWidth / 2), 11, 'B', white)
-
 	// Draw left and right circles at the bottom of the red screen
 	tinydraw.FilledCircle(&display, 10, 150, 7, white)
 	tinydraw.FilledCircle(&display, 230, 150, 7, white)
