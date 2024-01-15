@@ -1,2 +1,6 @@
 .DS_Store
 gba/*/*.sav
+go-vs-tinygo/hello-go
+go-vs-tinygo/hello-tinygo
+.gitignore
+go-vs-tinygo/main
