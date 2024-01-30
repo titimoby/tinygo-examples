@@ -16,7 +16,6 @@ var (
 	display = machine.Display
 
 	// Screen resolution
-	// screenWidth, screenHeight = display.Size()
 	screenWidth  int16 = 240
 	screenHeight int16 = 160
 
@@ -33,10 +32,8 @@ var (
 	gGreen  = color.RGBA{15, 157, 88, 255}
 
 	// Coordinates
-	x int16 = 100 //TODO: horizontally center
-	y int16 = 100 //TODO: vertically center
-	// x int16 = screenWidth / 2
-	// y int16 = screenHeight / 2
+	x int16 = 100 //horizontally center
+	y int16 = 100 //vertically center
 
 	// Borders
 	border int16 = 16
@@ -155,7 +152,6 @@ func update() {
 		if gameStarted {
 			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', black)
 
-			//TODO: little bug - gopher disapear ^^
 			if border < y-20-gopherSize {
 				// Display the gopher up
 				y = y - 20
@@ -169,16 +165,22 @@ func update() {
 		}
 
 	case tinygba.ButtonB.IsPushed(key):
-		gopherColor = green
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
+		if gameStarted {
+			gopherColor = green
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
+		}
 
 	case tinygba.ButtonL.IsPushed(key):
-		gopherColor = gYellow
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
+		if gameStarted {
+			gopherColor = gYellow
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
+		}
 
 	case tinygba.ButtonR.IsPushed(key):
-		gopherColor = gBlue
-		tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
+		if gameStarted {
+			gopherColor = gBlue
+			tinyfont.DrawChar(&display, &gophers.Regular58pt, x, y, 'B', gopherColor)
+		}
 	}
 }
 
