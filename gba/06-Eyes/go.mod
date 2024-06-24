@@ -1,6 +1,6 @@
 module gitlab.com/TitiMoby/tinygo-examples/gba/06-Eyes
 
-go 1.21.0
+go 1.21
 
 require tinygo.org/x/tinydraw v0.4.0
 

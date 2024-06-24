@@ -9,3 +9,4 @@ To use examples, go in a folder and use the command:<br/>:
 
 List of examples:
 - [01-Blinky](01-Blinky/): blink the upper left LED
+- [02-Buzzy](02-Buzzy/): play a little buzzer melody
