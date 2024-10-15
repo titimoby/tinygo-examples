@@ -1,20 +1,27 @@
 # Go vs TinyGo
 
-# Go package
+Versions:
 
 ```bash
-go build -o hello-go main.go
+$ go version
+go version go1.23.1 linux/amd64
 
-ll hello-go
--rwxr-xr-x  1 aurelievache  staff   1,9M 13 jan 14:58 hello-go
+$ tinygo version
+tinygo version 0.33.0 linux/amd64 (using go version go1.23.1 and LLVM version 18.1.2)
 ```
 
-# TinyGo package
+## Go package
 
 ```bash
+$ go build -o hello-go main.go ; ll -h hello-go
 
-tinygo build -o hello-tinygo main.go 
+-rwxr-xr-x 1 aurelievache staff 1.5M Oct 15 13:36 hello-go*
+```
 
-ll hello-tinygo 
--rwxr-xr-x  1 aurelievache  staff    33K 13 jan 15:01 hello-tinygo
+## TinyGo package
+
+```bash
+$ tinygo build -o hello-tinygo main.go ; ll -h hello-tinygo
+
+-rwxr-xr-x 1 aurelievache staff 108K Oct 15 13:37 hello-tinygo*
 ```
