@@ -4,19 +4,14 @@ import (
 	"image/color"
 	"math/rand"
 
+	"tinygo.org/x/tinydraw"
 	"tinygo.org/x/tinyfont"
 	"tinygo.org/x/tinyfont/freesans"
 	"tinygo.org/x/tinygba"
 )
 
-// background 155,186,90 like the real nokia 3310 - nokiaBG
-// https://playsnake.org/
-// Display the splash start screen with the same fonts and please press start button
-// Change apple to spider
-// TODO: Faire bordure comme Telecran
-// TODO: add score at the top?
-// TODO: possibility to change the speed? press L button reduce speed, press R button increase speed?
-// BUG - Fix si le snake move a droite, et qu'on appuie sur la fleche gauche alors erreur ça plante le jeu
+// Snake game like the old 3310 Nokia game
+// Each time the snake eats a spider, it grows and score++
 
 const (
 	GameSplash = iota
@@ -32,10 +27,16 @@ const (
 	LEFT  = "left"
 	RIGHT = "right"
 
+	// Snake information
 	WIDTHBLOCKS  = 24
 	HEIGHTBLOCKS = 16
 
 	snakeDefaultLength = 3
+
+	// Levels
+	levelEasy   = 300
+	levelNormal = 120
+	levelHard   = 50
 )
 
 var (
@@ -62,11 +63,10 @@ type Snake struct {
 }
 
 type Game struct {
-	snake            Snake
-	spiderX, spiderY int16
-	Status           uint8
-	score            int
-	frame, delay     int
+	snake               Snake
+	spiderX, spiderY    int16
+	Status              uint8
+	score, frame, delay int
 }
 
 var splashed = false
@@ -86,7 +86,7 @@ func NewGame() *Game {
 		spiderX: 5,
 		spiderY: 5,
 		Status:  GameSplash,
-		delay:   120,
+		delay:   levelNormal,
 	}
 }
 
@@ -114,13 +114,7 @@ func (g *Game) Play(direction string) {
 	}
 
 	switch direction {
-	case LEFT:
-		g.snake.direction = direction
-	case RIGHT:
-		g.snake.direction = direction
-	case UP:
-		g.snake.direction = direction
-	case DOWN:
+	case LEFT, RIGHT, UP, DOWN:
 		g.snake.direction = direction
 	}
 
@@ -134,22 +128,42 @@ func (g *Game) Over() {
 	g.Status = GameOver
 }
 
+func (g *Game) SetLevel() {
+
+	//TODO: Fix Bug passage des levels
+	switch {
+	case g.delay == levelHard:
+		// Define level to easy
+		activateEasyLevel()
+		deactivateHardLevel()
+		g.delay = levelEasy
+
+	case g.delay == levelNormal:
+		// Define level to hard
+		activateHardLevel()
+		deactivateNormalLevel()
+		g.delay = levelHard
+
+	case g.delay == levelEasy:
+		// Define level to normal
+		activateNormalLevel()
+		deactivateEasyLevel()
+		g.delay = levelNormal
+	}
+}
+
 func (g *Game) drawStartScreen() {
 	clearScreen()
 
-	tinyfont.WriteLine(&display, &freesans.Bold24pt7b, 37, 80, "SNAKE", snakeFont)
+	tinyfont.WriteLine(&display, &freesans.Bold24pt7b, 37, 78, "SNAKE", snakeFont)
 
-	tinyfont.WriteLine(&display, &tinyfont.TomThumb, 84, 100, "Press START button", white)
+	//Depending on the level, select the good difficulty
+	displayLevelChoices()
 
-	//tinygba.FillRectangleWithBuffer(10, 10, 10, 6, spiderBuf)
+	//v2
+	tinyfont.WriteLine(&display, &tinyfont.TomThumb, 84, 150, "Press START button", white)
 
-	if g.score > 0 {
-		scoreStr[7] = 48 + uint8((g.score)/100)
-		scoreStr[8] = 48 + uint8(((g.score)/10)%10)
-		scoreStr[9] = 48 + uint8((g.score)%10)
-
-		tinyfont.WriteLine(&display, &tinyfont.TomThumb, 98, 120, string(scoreStr), snakeFont)
-	}
+	displayScore()
 }
 
 // When the game begin, the snake moves to right and have a length of 3 blocks (snakeDefaultLength)
@@ -257,4 +271,78 @@ func (g *Game) drawSnakePartial(x, y int16, c color.RGBA) {
 		modY = 8
 	}
 	tinygba.FillRectangle(10*x, 10*y, 10, modY, c)
+}
+
+func activateNormalLevel() {
+	tinydraw.FilledCircle(&display, 101, 117, 3, snakeFont)
+}
+
+func deactivateNormalLevel() {
+	tinydraw.FilledCircle(&display, 101, 117, 3, nokiaBG)
+	tinydraw.Circle(&display, 101, 117, 3, snakeFont)
+}
+
+func activateEasyLevel() {
+	tinydraw.FilledCircle(&display, 66, 117, 3, snakeFont)
+}
+
+func deactivateEasyLevel() {
+	tinydraw.FilledCircle(&display, 66, 117, 3, nokiaBG)
+	tinydraw.Circle(&display, 66, 117, 3, snakeFont)
+}
+
+func activateHardLevel() {
+	tinydraw.FilledCircle(&display, 143, 117, 3, snakeFont)
+}
+
+func deactivateHardLevel() {
+	tinydraw.FilledCircle(&display, 143, 117, 3, nokiaBG)
+	tinydraw.Circle(&display, 143, 117, 3, snakeFont)
+}
+
+func displayLevelChoices() {
+
+	displayEasyLevelText()
+	displayNormalLevelText()
+	displayHardLevelText()
+
+	// Simulate radio buttons/choices
+	switch {
+	case game.delay == levelEasy:
+		deactivateHardLevel()
+		deactivateNormalLevel()
+		activateEasyLevel()
+
+	case game.delay == levelNormal:
+		deactivateEasyLevel()
+		activateNormalLevel()
+		deactivateHardLevel()
+
+	case game.delay == levelHard:
+		deactivateEasyLevel()
+		deactivateNormalLevel()
+		activateHardLevel()
+	}
+}
+
+func displayScore() {
+	if game.score > 0 {
+		scoreStr[7] = 48 + uint8((game.score)/100)
+		scoreStr[8] = 48 + uint8(((game.score)/10)%10)
+		scoreStr[9] = 48 + uint8((game.score)%10)
+
+		tinyfont.WriteLine(&display, &tinyfont.TomThumb, 98, 100, string(scoreStr), snakeFont)
+	}
+}
+
+func displayEasyLevelText() {
+	tinyfont.WriteLine(&display, &tinyfont.TomThumb, 72, 120, "EASY", snakeFont)
+}
+
+func displayNormalLevelText() {
+	tinyfont.WriteLine(&display, &tinyfont.TomThumb, 107, 120, "NORMAL", snakeFont)
+}
+
+func displayHardLevelText() {
+	tinyfont.WriteLine(&display, &tinyfont.TomThumb, 148, 120, "HARD", snakeFont)
 }

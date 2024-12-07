@@ -33,9 +33,7 @@ func update() {
 	case GameSplash:
 		game.Splash()
 
-		if tinygba.ButtonStart.IsPushed(key) {
-			game.Start()
-		}
+		splash(key)
 
 	case GamePlay:
 		switch {
@@ -66,13 +64,6 @@ func update() {
 				//change direction and move snake to this direction
 				game.Play(UP)
 			}
-		//TODO: reduce speed (donc augmentation du delay)
-		case tinygba.ButtonL.IsPushed(key):
-			//game.delay++
-
-		//TODO: increase speed (donc reduction du delay)
-		case tinygba.ButtonR.IsPushed(key):
-			//game.delay--
 
 		default:
 			game.Play("")
@@ -81,12 +72,20 @@ func update() {
 	case GameOver:
 		game.Splash()
 
-		if tinygba.ButtonStart.IsPushed(key) {
-			game.Start()
-		}
+		splash(key)
 	}
 }
 
 func clearScreen() {
 	tinygba.FillScreen(nokiaBG)
+}
+
+func splash(key uint16) {
+	if tinygba.ButtonStart.IsPushed(key) {
+		// START = Start the game
+		game.Start()
+	} else if tinygba.ButtonSelect.IsPushed(key) {
+		// SELECT = Change the level/difficulty of the game
+		game.SetLevel()
+	}
 }
